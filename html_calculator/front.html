@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<!--Autor: Diana Andrea Aponte Sanabria-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="operaciones.js"></script>
+    <title>Calculadora_UEB</title>
+</head>
+<body>
+    <div align="center">
+        <div>
+            <label>Numero 1</label>
+            <input type="text" title="Ingrese un número" id="numero1" required/>
+            <br>
+             <label>Numero 1</label>
+            <input type="text" id="numero2" required/>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td><input type="button" name="sumar" value="+" onclick="return sumarDatos()"/></td>
+                    <td><input type="button" name="restar" value="-" onclick="return restarDatos()"/></td>
+                    <td><input type="button" name="multiplicar" value="*" onclick="return multiplicarDatos()"/></td>
+                    <td><input type="button" name="dividir" value="/"onclick="return dividirDatos()"/></td>
+                </tr>    
+            </table>
+        </div>
+        <div>
+            <label>Resultado</label>
+            <input type="text" id="resultado" readonly/>
+        </div>
+    </div>
+</body>
+</html>
