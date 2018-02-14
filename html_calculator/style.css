@@ -1,0 +1,12 @@
+
+.fondoTitulo{
+	width: 75px;
+	height: 75px;
+	background-image: url("calcuworld.png");
+	background-size: cover;
+	
+}
+
+#resultado{
+	color: green;
+}
