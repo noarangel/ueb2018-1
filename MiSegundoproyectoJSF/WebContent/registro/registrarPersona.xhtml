@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Nombre" id="LbLNombres"/>
+			<h:inputText value="" maxlength="50" id="txtNombres" required="true" requiredMessage="Campo nombres es obligatorio" size="20" label="field Name" />
+			<h:message for="txtNombres" errorStyle="color:RED"/>
+			<h:outputLabel value="Apellidos" id="LbLApellidos"/>
+			<h:inputText value="" maxlength="50" id="txtApellidos" required="true" requiredMessage="Campo apellidos es obligatorio" size="20" label="field Name" />
+			<h:message for="txtApellidos" errorStyle="color:RED"/>
+			<h:outputLabel value="Correo" id="LbLCorreo"/>
+			<h:inputText value="" maxlength="50" id="txtCorreo" required="true" requiredMessage="Campo correo es obligatorio" size="20" label="field Name" />
+			<h:message for="txtCorreo" errorStyle="color:RED"/>
+			<h:outputLabel value="Telefono" id="LbLTelefono"/>
+			<h:inputText value="" maxlength="50" id="txtTelefono" required="true" requiredMessage="Campo telefono es obligatorio" size="20" label="field Name">
+				<f:validateLongRange minimum="1000000" maximum="999999999"></f:validateLongRange>
+			</h:inputText>
+			<h:message for="txtTelefono" errorStyle="color:RED"/>
+			<h:outputLabel value="Estado Civil" id="LbLEstadoCivil"/>
+			<h:selectOneMenu value="" id="somEstadoCivil" required="true" requiredMessage="Campo es Obligatorio" >
+				<f:selectItem itemLabel="Elija uno" />
+				<f:selectItem itemValue="1" itemLabel="Soltero"/>
+				<f:selectItem itemValue="2" itemLabel="Casado"/>
+				<f:selectItem itemValue="3" itemLabel="Union Libre"/>
+				<f:selectItem itemValue="4" itemLabel="Divorciado"/>
+				<f:selectItem itemValue="5" itemLabel="Separado"/>
+				<f:selectItem itemValue="6" itemLabel="Viudo"/>
+			</h:selectOneMenu>
+			<h:message for="somEstadoCivil" errorStyle="color:RED"/>
+			<h:outputLabel value="Genero" id="LbLGenero"/>	
+			<h:selectOneRadio value="" id="sorGenero" required="true" requiredMessage="Campo es Obligatorio">
+				<f:selectItem itemValue="1" itemLabel="Masculino"/>
+				<f:selectItem itemValue="2" itemLabel="Femenino"/>
+			</h:selectOneRadio>
+			<h:message for="sorGenero" errorStyle="color:RED"/>	
+			<h:outputLabel value="Acepta Condiciones de Uso" id="LbLAcepta"/>
+			<h:selectBooleanCheckbox value="" id="chkAcepta" />
+			<h:message for="chkAcepta" errorStyle="color:RED"/>	
+		</h:panelGrid>
+		<h:commandButton value="registrar"/>
+	</h:form>
+</body> 
+</html>
