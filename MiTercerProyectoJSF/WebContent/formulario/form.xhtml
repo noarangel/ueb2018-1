@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+	<h:head>
+		<h:outputStylesheet library="css" name="estilo.css" />
+	</h:head> 
+	<body>
+		<h:form id="formulario">
+			<ui:insert>
+				<h1>PROCESO DE PREMATRICULA</h1>
+			</ui:insert>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nombres" id="LblNombres"/>
+				<h:inputText value="" maxlength="50" id="txtNombres" required="true" requiredMessage="Campo nombres es obligatorio" size="20" label="field Name" />
+				<h:outputLabel value="Apellidos" id="LblApellidos"/>
+				<h:inputText value="" maxlength="50" id="txtApellidos" required="true" requiredMessage="Campo nombres es obligatorio" size="20" label="field Name" />
+				<h:outputLabel value="TipoCedula" id="LblTipoCedula"/>
+				<h:selectOneMenu value="Tipo de identificación">
+					<f:selectItem itemValue="1" itemLabel="Cedula de Ciudadania"/>
+					<f:selectItem itemValue="2" itemLabel="Cedula de Extrangeria"/>
+					<f:selectItem itemValue="3" itemLabel="Registro Civil"/>
+					<f:selectItem itemValue="4" itemLabel="NUIP"/>
+					<f:selectItem itemValue="5" itemLabel="Tarjeta de Identidad"/>
+				</h:selectOneMenu>
+				<h:outputLabel value="Identificación" id="Lblidentificación"/>
+				<h:inputText value="" maxlength="50" id="txtidentificación" required="true" requiredMessage="Campo nombres es obligatorio" size="20" label="field Name" />
+			</h:panelGrid>
+			<ui:insert>
+				<p>Eija las asignaturas a matricular</p>
+			</ui:insert>
+			<h:panelGrid columns="4">
+				<h:outputText value="  " />
+				<h:outputText value="Semestre" />
+				<h:outputText value="Asignatura"/>
+				<h:outputText value="Creditos" />
+				<h:selectBooleanCheckbox value="" />
+				<h:outputText value="1" />
+				<h:outputText value="TGS"/>
+				<h:outputText value="1" />
+				<h:selectBooleanCheckbox value="" />
+				<h:outputText value="1" />
+				<h:outputText value="Informatica 1"/>
+				<h:outputText value="3" />
+				<h:selectBooleanCheckbox value="" />
+				<h:outputText value="2" />
+				<h:outputText value="Informatica 2"/>
+				<h:outputText value="3" />
+				<h:selectBooleanCheckbox value="" />
+				<h:outputText value="3" />
+				<h:outputText value="Estructura de datos 1"/>
+				<h:outputText value="2" />
+			</h:panelGrid>
+			<h:inputTextarea value="Acepta las condiciones" rows="4" cols="50" />
+			<h:selectOneRadio value="">
+				<f:selectItem itemValue="1" itemLabel="si"/>
+				<f:selectItem itemValue="2" itemLabel="no"/>
+			</h:selectOneRadio>
+			<h:panelGrid columns="1">
+				<h:commandButton value="Aceptar" />
+				<h:commandLink value="Pagar la prematricula" />
+			</h:panelGrid>
+		</h:form> 
+	</body> 
+</html>
