@@ -1,0 +1,11 @@
+@charset "ISO-8859-1";
+
+.centrar{
+	 width: 14rem;
+	 position: absolute; 
+	 left: calc(50% - 7rem); 
+}
+
+.centarBotones{
+	padding-left: 22%;
+}

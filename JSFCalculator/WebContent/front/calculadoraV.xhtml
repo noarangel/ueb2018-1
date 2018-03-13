@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<link href="estilo.css" type="text/css" rel="stylesheet" />
+</h:head> 
+<body> 
+	<h:form styleClass="centrar">
+		<h:outputLabel value="Calculadora" style="font-size:40px; padding-left:2%" />
+		<h:panelGrid columns="2" style="display:block; text-align:center">
+			<h:outputLabel value="Número 1" id="num1" />
+			<h:inputText value="#{operacionesMB.num1}" maxlength="50" id="txtNum1" required="true" requiredMessage="Campo es obligatorio" size="20" />
+			<h:outputLabel value="Número 2" />
+			<h:inputText value="#{operacionesMB.num2}" maxlength="50" id="txtNum2" required="true" requiredMessage="Campo es obligatorio" size="20" />
+		</h:panelGrid>
+		<h:panelGrid columns="4" styleClass="centrarBotones">
+			<h:commandButton value="+" action="#{operacionesMB.sumar()}" />
+			<h:commandButton value="-" action="#{operacionesMB.restar()}"/>
+			<h:commandButton value="*" action="#{operacionesMB.multiplicar()}" />
+			<h:commandButton value="/" action="#{operacionesMB.dividir()}"/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Resultado" />
+			<h:inputText value="#{operacionesMB.respuesta}" />
+		</h:panelGrid>
+	</h:form>
+</body> 
+</html>
