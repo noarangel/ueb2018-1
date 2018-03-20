@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+	<h:form>
+		<h:outputText value="Ingrese dos textos" />
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Texto 1" />
+			<h:inputText value="#{valMB.texto1}" label="texto 1" id="txt1" required="true"/>
+			<h:outputLabel value="Texto 2" />
+			<h:inputText value="#{valMB.texto2}" label="texto 2" id="txt2" required="true"/>
+			<h:selectBooleanCheckbox value="#{valMB.mayusculas}" id="mayus" />
+			<h:outputLabel value="Validar Mayúsculas" />
+		</h:panelGrid>	
+		<h:commandButton action="#{valMB.validar()}" value="Comparar" />
+		<h:panelGrid>
+			<h:outputText value="#{valMB.mensaje}" />
+		</h:panelGrid>
+	</h:form>
+</body> 
+</html>
