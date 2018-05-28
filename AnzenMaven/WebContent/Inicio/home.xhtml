@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<!-- Integración con Bootstrap -->
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+		crossorigin="anonymous">
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+			integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+			crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+	</link>
+	<title>ANZEN</title>
+	<style type="text/css">
+.col-xs-updated {
+	width: 92% !important;
+}
+
+.tab {
+	display: inline-block;
+	margin-left: -2px;
+}
+
+#map {
+	height: 92% !important;
+}
+</style>
+</h:head>
+
+<h:body>
+	<header> <nav
+		class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark ">
+	<h:form>
+		<h:commandLink value="ANZEN" styleClass="navbar-brand mr-auto mr-lg-0" />
+	</h:form>
+	<div class="navbar-collapse offcanvas-collapse">
+		<h:form class="form-horizontal " style="margin:0 auto">
+			<ul class="navbar-nav mr-auto pull-xs-right ">
+				<li><h:commandLink action="page1" value="ReportesPDF"
+						styleClass="nav-link" /></li>
+				<li><h:commandLink action="registro" value="Registro / Ingreso"
+						styleClass="nav-link active" /></li>
+			</ul>
+		</h:form>
+	</div>
+	</nav> </header>
+
+	<section>
+	<div class="nav-scroller bg-white box-shadow" style="padding-top: 70px" />
+	<div class="container-fluid">
+
+		<!-- dos columnas adaptables -->
+
+		<div class="row" style="height: 500px">
+
+			<!-- COLUMNA IZQUIERDA -->
+
+			<div class="col-sm-8">
+
+				<!-- codigo mapa -->
+				<div id="map"></div>
+				<script>
+      		function initMap() {
+        		var map = new google.maps.Map(document.getElementById('map'), {
+          			center: {lat: 18.0858100, lng:  -15.9785000},
+          			zoom: 3
+        		});
+
+	        	if (navigator.geolocation) {
+	          		navigator.geolocation.getCurrentPosition(function(position) {
+
+	          		<!-- variable de una posicion cualquiera -->
+	            	var pos = {
+	              		lat: position.coords.latitude,
+	              		lng: position.coords.longitude
+	            	};
+
+	            	<!-- variable de una posicion quemada Universidad El Bosque -->
+	            	var pos1 = {
+		              		lat: -2.9009,
+		              		lng: -78.9995
+		            };
+
+	            	<!-- variable para el icono -->
+	            	var image = 'imagenes/posicion.png';
+
+	            	<!-- variable con el icono -->
+	           		var marker = new google.maps.Marker({
+	          			position: pos,
+	          			map: map,
+	          			draggable: true,
+	          			animation: google.maps.Animation.DROP,
+	          			icon: image
+	        		});
+
+	           		<!-- variablecon etiqueta -->
+	           		var marker1 = new google.maps.Marker({
+	          			position: pos1,
+	          			map: map,
+	          			draggable: true,
+	          			animation: google.maps.Animation.DROP,	          			
+	          			label: 'UEB',
+	          			title: 'Universidad El Bosque'
+	        		});
+	           		
+	           		<!-- ingresar un marcador -->
+	           		google.maps.event.addListener(map, 'click', function(event) {
+	            		addMarker(event.latLng, map);
+	            	});
+
+	           		function addMarker(location, map) {
+            			var marker = new google.maps.Marker({
+	            			position: location,
+	            		    map: map,
+		          			draggable: true,
+		          			animation: google.maps.Animation.DROP
+	            		});
+	            	}
+
+	           		
+	          		}, function() {
+	            		handleLocationError(true, infoWindow, map.getCenter());
+	          		});
+						          		
+	        	} 
+
+	        	else {
+	          		handleLocationError(false, infoWindow, map.getCenter());
+	        	}
+      		}
+         	
+      		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        		infoWindow.setPosition(pos);
+        		infoWindow.setContent(browserHasGeolocation ?
+                	'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+      		}          	  		
+      	</script>
+
+				<!-- contraseña de la apir -->
+				<script
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFIGUAvm_lEgtBQR7pt1hvwCp0IOUgy_c&amp;callback=initMap">
+    			</script>
+			</div>
+
+			<!-- COLUMNA DERECHA -->
+			<div class="col-sm-4">
+				<h6 style="font-size: 10px; color: #00C3C3; padding-bottom: 10px">Seleccione
+					un reporte en el mapa para ver su descripción</h6>
+
+				<!-- tarejta de suceso -->
+				<div class="card">
+					<div class="card-body text-info">
+						<h:form>
+							<h:panelGrid styleClass="card-body text-info">
+								<h:outputText value="SUCESO" styleClass="card-title" />
+								<h:outputText value="Tipo de delito"
+									styleClass="card-subtitle mb-2 text-info">
+								</h:outputText>
+								<h:inputTextarea cols="33" rows="5" styleClass="card "
+									value="descripción realizada...." />
+								<h:outputLabel
+									value="Calificación veracidad del reporte, 1 alificación más baja y 5 más alta"
+									styleClass="card-footer" />
+
+								<h:selectOneMenu value="" id="calificacion"
+									styleClass="btn-outline-info">
+									<f:selectItem itemLabel="-- Select --" noSelectionOption="true" />
+									<f:selectItem itemValue="1" itemLabel="1" />
+									<f:selectItem itemValue="2" itemLabel="2" />
+									<f:selectItem itemValue="3" itemLabel="3" />
+									<f:selectItem itemValue="4" itemLabel="4" />
+									<f:selectItem itemValue="5" itemLabel="5" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+
+
+
+	<!--Footer-->
+	<footer>
+	<div style="">
+		<!--Copyright-->
+		<div class="footer-copyright py-3 text-center ">
+			© 2018 Copyright: <a href="http://www.uelbosque.edu.co"> ANZEN </a>
+		</div>
+	</div>
+	<!--/.Copyright--> </footer>
+
+</h:body>
+
+</html>

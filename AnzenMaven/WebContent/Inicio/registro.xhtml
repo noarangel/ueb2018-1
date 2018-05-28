@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<!-- Integración con Bootstrap -->
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+		crossorigin="anonymous">
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+			integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+			crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+	</link>
+	<title>REGISTRO/INICIO</title>
+	<style type="text/css">
+.col-xs-updated {
+	width: 92% !important;
+}
+
+.tab {
+	display: inline-block;
+	margin-left: -2px;
+}
+</style>
+</h:head>
+
+<body>
+	<header> 
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark "> 
+	<h:form> 
+	<h:commandLink action="home" value="ANZEN" styleClass="navbar-brand mr-auto mr-lg-0" />
+	</h:form>
+	<div class="navbar-collapse offcanvas-collapse" >
+	<h:form class="form-horizontal" style="margin:0 auto">
+		<ul class="navbar-nav mr-auto pull-xs-right ">
+			<li><h:commandLink action="home" value="Home" styleClass="nav-link active"/></li>
+		</ul>
+		</h:form>
+	</div> </nav> </header>
+
+
+	<section>
+	<div class="nav-scroller bg-white box-shadow" style="padding-top: 40px" />
+	<div class="container-fluid">
+
+		<!-- dos columnas adaptables -->
+		<div class="row"
+			style="align-content: center; padding-top: 40px; padding-left: 200px; padding-right: 200px;">
+
+
+			<!-- COLUMNA IZQUIERDA -->
+			<div class="col-sm-6" style="padding: 30px;">
+				<h1 class="h4 mb-3 font-weight-normal">Iniciar Sesión</h1>
+
+				<!-- FORMULARIO INGRESO -->
+
+				<h:form styleClass="form-signin">
+					<h:message rendered="true" />
+					<!-- FORM USUARIO-->
+					<div class="form-group">
+						<h:outputLabel value="Usuario* " id="lbUsuario" />
+						<h:inputText value="#{inMB.cred.user}" maxlength="50" id="txtUsuario"
+							styleClass="form-control" required="true"
+							requiredMessage="Usuario Obligatorio" size="20"
+							label="Field Usuario" />
+						<h:message for="txtUsuario" errorStyle="color:RED" />
+					</div>
+
+					<!-- FORM USUARIO CONTRASEÑA-->
+					<div class="form-group">
+						<h:outputLabel value="Contraseña* " id="lbContrasena" />
+						<h:inputSecret value="#{inMB.cred.pass}" id="txtCn" styleClass="form-control"
+							required="true" requiredMessage="Contraseña Obligatoria"
+							size="20" label="Field Cn" />
+						<h:message for="txtCn" errorStyle="color:RED" />
+					</div>
+
+					<!-- Check -->
+					<h:panelGrid columns="2" cellspacing="5">
+						<h:outputText value="recuérdame " />
+						<h:selectBooleanCheckbox id="recuerdame" />
+					</h:panelGrid>
+
+					<!-- Boton-->
+					<br />
+					<h:commandButton action="#{inMB.logueo()}" value="Ingresar Usuario"
+						styleClass="btn btn-ms btn-info  btn-block">
+					</h:commandButton>
+					<br />
+					<p class="mt-5 mb-3 text-muted">© 2018 - Anzen</p>
+				</h:form>
+
+
+				<!-- COLUMNA DERECHA-->
+			</div>
+			<div class="col-sm-6 bg-dark " style="padding: 30px; color: white">
+				<h1 class="h4 mb-3 font-weight-normal">¿Nuevo Usuario?
+					Regístrate</h1>
+
+				<!-- FORMULARIO REGISTRO -->
+
+				<h:form styleClass="form-signin">
+
+					<!-- FORM NOMBRE-->
+					<div class="form-group">
+						<h:outputLabel value="Nombre* " id="lbNombre" />
+						<h:inputText value="#{usuarioMB.nombre}"  maxlength="50" id="txtNombre"
+							styleClass="form-control" required="true"
+							requiredMessage="Nombre Obligatorio" size="20"
+							label="Field Nombre" />
+						<h:message for="txtNombre" errorStyle="color:RED" />
+					</div>
+
+					<!-- FORM APELLIDO-->
+					<div class="form-group">
+						<h:outputLabel value="Apellidos* " id="lbApellido" />
+						<h:inputText value="#{usuarioMB.apellido}" maxlength="50" id="txtApellido"
+							styleClass="form-control" required="true"
+							requiredMessage="Apellido Obligatorio" size="20"
+							label="Field Apellido"/>
+						<h:message for="txtApellido" errorStyle="color:RED" />
+					</div>
+
+					<!-- FORM CORREO-->
+					<div class="form-group">
+						<h:outputLabel value="Email* " id="lbEmail" />
+						<h:inputText value="#{usuarioMB.usuarioNuevo.correoAnzen}" maxlength="50" id="txtEmail"
+							styleClass="form-control " required="true"
+							requiredMessage="Email Obligatorio" size="20"
+							label="Field Apellido"/>
+						<h:message for="txtEmail" errorStyle="color:RED" />
+					</div>
+
+					<!-- FORM CONTRASEÑA-->
+					<div class="form-group">
+						<h:outputLabel value="Contraseña* " id="lbContrasenaRe" />
+						<h:inputSecret value="#{usuarioMB.usuarioNuevo.claveAnzen}" id="txtCnRe" styleClass="form-control"
+							required="true" requiredMessage="Contraseña Obligatoria"
+							size="20" label="Field CnRe" />
+						<h:message for="txtCnRe" errorStyle="color:RED" />
+					</div>
+
+					<!-- FORM CONFIRMAR CONTRASEÑA-->
+					<div class="form-group">
+						<h:outputLabel value="Confirmar Contraseña* " id="lbContrasenaCon" />
+						<h:inputSecret id="txtCnCon" styleClass="form-control"
+							required="true"
+							requiredMessage="Confirmar Contraseña Obligatoria" size="20"
+							label="Field CnRe" />
+						<h:message for="txtCnCon" errorStyle="color:RED" />
+					</div>
+
+					<!-- Check -->
+					<div class="form-group">
+						<h:selectOneRadio value="#{usuarioMB.usuarioNuevo.notificacionesAnzen}" id="siAcepto" required="true"
+							requiredMessage="Condiciones obligatorio">
+							<f:selectItem itemValue="1" itemLabel="Acepto los términos y condiciones" />
+						</h:selectOneRadio>
+						<h:message for="siAcepto" errorStyle="color:RED" />
+					</div>
+
+					<!-- Boton-->
+					<br />
+					<h:commandButton action="#{usuarioMB.crearUsuario()}" value="Crear Cuenta"
+						styleClass="btn btn-ms btn-info  btn-block">
+					</h:commandButton>
+				
+					<br />
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+	</section>
+
+
+</body>
+</html>

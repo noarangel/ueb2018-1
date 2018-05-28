@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<!-- Integración con Bootstrap -->
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+		crossorigin="anonymous">
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+			integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+			crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+	</link>
+	<title>ANZEN</title>
+	<style type="text/css">
+.col-xs-updated {
+	width: 92% !important;
+}
+
+.tab {
+	display: inline-block;
+	margin-left: -2px;
+}
+
+#map {
+	height: 92% !important;
+}
+</style>
+</h:head>
+
+<body> 
+
+<header> <nav
+		class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark ">
+	<h:form>
+		<h:commandLink action="/Inicio/home" value="ANZEN"
+			styleClass="navbar-brand mr-auto mr-lg-0" />
+	</h:form>
+	<div class="navbar-collapse offcanvas-collapse">
+		<h:form class="form-horizontal " style="margin:0 auto">
+			<ul class="navbar-nav mr-auto pull-xs-right ">
+				<li><h:commandLink action="tablaUsuarios" value="USUARIOS REGISTRADOS"
+						styleClass="nav-link active" /></li>
+			</ul>
+		</h:form>
+	</div>
+	</nav> </header>
+	
+	<section>
+	<div class="nav-scroller bg-white box-shadow"
+		style="padding-top: 100px" />
+	<div class="container-fluid">
+
+		<div>
+			<div style="text-align: center">
+				<h:outputLabel value="SUCESOS REPORTADOS EN LA PLATAFORMA" />
+			</div>
+
+			<h:form styleClass="for form-control">
+
+				<div style="padding-bottom: 15px" align="center">
+
+					<h:panelGrid columns="2">
+
+						<h:commandLink action="#{sucesoMB.consultarSuceso()}">
+							<h:graphicImage value="/imagenes/consultar.svg" />
+						</h:commandLink>
+
+						<h:commandLink action="#{sucesoMB.iniciarCreacionSuceso()}">
+							<h:graphicImage value="/imagenes/crear.svg" />
+						</h:commandLink>
+					</h:panelGrid>
+
+				</div>
+
+				<h:panelGrid class="col-md-12">
+					<h:dataTable value="#{sucesoMB.listaSuceso}" var="fila"
+						styleClass="table table-striped table-bordered dt-responsive nowrap"
+						cellspacing="0" width="100%" >
+
+						<h:column >
+							<f:facet name="header">
+								<h:outputLabel value="Editar" />			
+							</f:facet>
+							<h:commandLink action="modifica.xhtml">
+								<h:graphicImage value="/imagenes/editar.svg" />
+								<f:setPropertyActionListener value="#{fila}"
+									target="#{sucesoMB.modificacionSuceso}" />
+							</h:commandLink>
+						</h:column>
+						
+						<h:column >
+							<f:facet name="header">
+								<h:outputLabel value="Eliminar" />	
+							</f:facet>
+							<h:commandLink action="#{sucesoMB.eliminarSuceso()}">
+								<h:graphicImage value="/imagenes/eliminar.svg" />
+								<f:setPropertyActionListener value="#{fila}"
+									target="#{sucesoMB.eliminacionSuceso}" />
+							</h:commandLink>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Id" />
+							</f:facet>
+							<h:outputLabel value="#{fila.id}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="tipo de suceso" />
+							</f:facet>
+							<h:outputLabel value="#{fila.tiposuceso.id}" />
+						</h:column>
+
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="ubicacion" />
+							</f:facet>
+							<h:outputLabel value="#{fila.ubicacion}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="fecha de Suceso" />
+							</f:facet>
+							<h:outputLabel value="#{fila.fechaSuceso}" />
+						</h:column>
+
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="fecha de Registro" />
+							</f:facet>
+							<h:outputLabel value="#{fila.fechaRegistro}" />
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">
+								<h:outputLabel value="Descripcion" />
+							</f:facet>
+							<h:outputLabel value="#{fila.comentario}" />
+						</h:column>
+
+					</h:dataTable>
+
+
+
+				</h:panelGrid>
+
+
+			</h:form>
+
+		</div>
+	</div>
+	</section>
+	
+
+</body> 
+</html>
